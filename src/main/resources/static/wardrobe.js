@@ -9,6 +9,8 @@ function getLog(){
             return;
         }
 
+        html="";
+
         $("#gameConsole").html(html);
     }
     )
@@ -28,6 +30,13 @@ function saveWardrobe(e){
 }
 
 $("#setWardrobe").submit(saveWardrobe);
+
+//If you click the start the game button, you can kick and open
+$("#startGame").click(function(){
+    $("#startGame").hide();
+    $("#open").show();
+    $("#kick").show();
+});
 
 //If you click the button open, this button wil hide, and Close will show and get in will show
     $("#open").click(function(){

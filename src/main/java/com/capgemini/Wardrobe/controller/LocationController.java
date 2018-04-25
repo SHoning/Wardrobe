@@ -20,7 +20,7 @@ public class LocationController {
 
     @GetMapping("/fight")
     public boolean killWitch(){
-        if (Math.random()>= timesVisited/10){
+        if (Math.random()<= timesVisited/10){
             return true;
         }
         return false;

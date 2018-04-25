@@ -93,11 +93,11 @@ $("#startGame").click(function(){
 });
 
 //If you click the button open, this button wil hide, and Close will show and get in will show
-    $("#open").click(function(){
-        $("#open").hide();
-        $("#close").show();
-        $("#getIn").show();
-    });
+$("#open").click(function(){
+    $("#open").hide();
+    $("#close").show();
+    $("#getIn").show();
+});
 
 
 //If you click close, close will hide, get in will hide and open will show

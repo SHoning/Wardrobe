@@ -58,17 +58,7 @@ html="<img src='https://media.giphy.com/media/11EhiIoyUsda0/giphy.gif'>";
 $("#gameConsole").html(html);
 }
 
-function getLog(){
-    $.get("/api/log/", function(data){
-        if (data.length<=0){
-            return;
-        }
 
-        html="";
-
-        $("#gameConsole").html(html);
-    });
-}
 
 function saveWardrobe(e){
     e.preventDefault();
@@ -79,7 +69,7 @@ function saveWardrobe(e){
         amInside: false,
         breakDownCapacity: 0,
         working: true
-    },function(){getLog();}
+    },function(){$("#gameConsole").html("");}
     );
 }
 
@@ -97,6 +87,7 @@ $("#open").click(function(){
     $("#open").hide();
     $("#close").show();
     $("#getIn").show();
+    $("#gameConsole").html("");
 });
 
 
@@ -105,6 +96,7 @@ $("#open").click(function(){
          $("#close").hide();
          $("#getIn").hide();
          $("#open").show();
+         $("#gameConsole").html("");
     });
 
 
@@ -124,8 +116,7 @@ $("#getOut").click(function(){
     $("#getOut").hide();
     $("#getIn").show();
     $("#kick").show();
+    $("#gameConsole").html("You are once again staring at the wardrobe");
 })
 
 $("#kick").click(kickCloset)
-
-getLog;

@@ -1,6 +1,31 @@
 function getLocation(){
-    $.get("api/location/")
-    //TODO: make the api call, and if we are in narnia we have to toggle the button fight the witch on
+    $.get("api/location/", function(data){
+    if (data== true){
+        $("#fight").show();
+        $("#gameConsole").html("<h2>you reached Narnia</h2>");
+        return;
+    }
+    $("#gameConsole").html("<p>There is nothing here, better get out again</p>");
+    });
+}
+
+function fightWitch(){
+    $.get("api/location/fight", function(data){
+    if(data==true){
+        $("#fight").hide();
+        $("#gameConsole").html("</h2>you have killed the witch<h2><p> you can now talk to Aslan to finish the game</p>");
+        $("#talk").show();
+        return;
+    }
+    $("#gameConsole").html("<p>The witch staggers but is still alive, try again!</p>");
+    });
+}
+
+function winGame(){
+
+html="<img src='https://media.giphy.com/media/11EhiIoyUsda0/giphy.gif'>";
+
+$("#gameConsole").html(html);
 }
 
 function getLog(){
@@ -12,8 +37,7 @@ function getLog(){
         html="";
 
         $("#gameConsole").html(html);
-    }
-    )
+    });
 }
 
 function saveWardrobe(e){
@@ -30,6 +54,8 @@ function saveWardrobe(e){
 }
 
 $("#setWardrobe").submit(saveWardrobe);
+$("#fight").click(fightWitch());
+$("#talk").click(winGame())
 
 //If you click the start the game button, you can kick and open
 $("#startGame").click(function(){
@@ -61,5 +87,12 @@ $("#startGame").click(function(){
          $("#kick").hide();
     }, function(){getLocation();});
 
+
+$("#getOut").click(function(){
+    $("#fight").hide();
+    $("#talk").hide();
+    $("#getOut").hide();
+    $("#getIn").show();
+})
 
 getLog;

@@ -42,10 +42,11 @@ public class WardrobeController {
     }
 
     @GetMapping("/kick")
-    public void kick(int Force){
-        if(wardrobe.getBreakDownCapacity() >= Force){
-            wardrobe.setWorking(false);
+    public boolean kick(){ //input? int Force
+        if(Math.random()<0.10){
+            return true;
         }
+        return false;
     }
 
     @GetMapping("/")

@@ -9,6 +9,26 @@ function getLocation(){
     });
 }
 
+function kickCloset(){
+    $.get("api/log/kick", function(data){
+    if(data){
+        $("#gameConsole").html("<p> The housekeeper has seen you kick the wardrobe, you are on a TimeOUT! </p>");
+         $("#open").prop( "disabled", true );
+         $("#close").prop( "disabled", true );
+         $("#getIn").prop( "disabled", true );
+         $("#kick").prop( "disabled", true );
+         setTimeout(function() {
+              $("#open").prop( "disabled", false);
+              $("#close").prop( "disabled", false );
+              $("#getIn").prop( "disabled", false);
+              $("#kick").prop( "disabled", false);
+         }, 10000);
+         return;
+    }
+    $("#gameConsole").html("<p> You are kicking an innocent wardrobe, WHY?!</p>")
+    });
+}
+
 function fightWitch(){
     $.get("api/location/fight", function(data){
     if(data){
@@ -27,9 +47,14 @@ function fightWitch(){
 }
 
 function winGame(){
-
 html="<img src='https://media.giphy.com/media/11EhiIoyUsda0/giphy.gif'>";
-
+    $("#open").hide();
+    $("#close").hide();
+    $("#getIn").hide();
+    $("#getOut").hide();
+    $("#kick").hide();
+    $("#talk").hide();
+    $("#fight").hide();
 $("#gameConsole").html(html);
 }
 
@@ -90,6 +115,7 @@ $("#getIn").click(function() {
     $("#getIn").hide();
     $("#getOut").show();
     $("#kick").hide();
+    $("#close").hide();
 });
 
 $("#getOut").click(function(){
@@ -99,5 +125,7 @@ $("#getOut").click(function(){
     $("#getIn").show();
     $("#kick").show();
 })
+
+$("#kick").click(kickCloset)
 
 getLog;

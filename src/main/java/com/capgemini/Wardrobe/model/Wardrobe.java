@@ -5,7 +5,7 @@ public class Wardrobe {
     private boolean open;
     private boolean amInside;
     private double breakDownCapacity;
-    private boolean working;
+    private boolean working=true;
 
     public Wardrobe() {
     }

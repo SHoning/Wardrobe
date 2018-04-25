@@ -1,53 +1,56 @@
 package com.capgemini.Wardrobe.controller;
 
 import com.capgemini.Wardrobe.model.Wardrobe;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/log")
 public class WardrobeController {
     private Wardrobe wardrobe;
 
-    @GetMapping
-    public void registerWardrobe(@PathVariable String name){
-        wardrobe = new Wardrobe(name);
+    @PostMapping("/new")
+    public void registerWardrobe(Wardrobe namedWardrobe){
+        wardrobe = namedWardrobe;
     }
 
-    @GetMapping
+    @GetMapping("/open")
     public void open(){
         if (wardrobe.isOpen()== false) {
             wardrobe.setOpen(true);
         }
     }
 
-    @GetMapping
+    @GetMapping("/close")
     public void close(){
         if(wardrobe.isOpen()==true){
             wardrobe.setOpen(false);
         }
     }
 
-    @GetMapping
+    @GetMapping("/goIn")
     public void getInside(){
         if(wardrobe.isAmInside()==false){
             wardrobe.setAmInside(true);
         }
     }
 
-    @GetMapping
+    @GetMapping("/getOut")
     public void getOut(){
         if(wardrobe.isAmInside()==true){
             wardrobe.setAmInside(false);
         }
     }
 
-    @GetMapping
+    @GetMapping("/kick")
     public void kick(int Force){
         if(wardrobe.getBreakDownCapacity() >= Force){
             wardrobe.setWorking(false);
         }
     }
+
+    @GetMapping("/")
+    public Wardrobe getStatus(){
+        return this.wardrobe;
+    }
+
 }
